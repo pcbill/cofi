@@ -1,0 +1,11 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+repositories {
+    mavenCentral()
+    mavenRepo urls: "http://repository.jboss.com/maven2/"
+}
+
+dependencies {
+    compile 'org.jboss.netty:netty:3.1.5.GA'
+}
