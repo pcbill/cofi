@@ -19,3 +19,12 @@ set showtabline=2
 set hlsearch
 set incsearch
 set ignorecase
+
+set nobackup
+set noswapfile
+set nowritebackup
+
+set expandtab
+set softtabstop=4
+set shiftwidth=4
+set tabstop=2
