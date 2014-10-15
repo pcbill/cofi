@@ -28,8 +28,3 @@ set expandtab
 set softtabstop=4
 set shiftwidth=4
 set tabstop=2
-
-noremap <F7> gT
-noremap <F8> gt
-nmap <TAB> v>
-nmap <S-TAB> v<
