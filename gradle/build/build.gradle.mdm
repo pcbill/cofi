@@ -1,0 +1,91 @@
+loadConfiguration()
+def loadConfiguration() {
+	def environment = hasProperty('env') ? env : 'dev'
+	setProperty 'environment', environment
+}
+
+buildscript {
+    repositories {
+        maven { url "https://repo.spring.io/libs-release" }
+        mavenLocal()
+        mavenCentral()
+    }
+    dependencies {
+        classpath( "org.springframework.boot:spring-boot-gradle-plugin:1.2.3.RELEASE" )
+    }
+}
+ 
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'spring-boot'
+ 
+sourceCompatibility = 1.7 
+jar {
+    baseName = 'mdm'
+    version =  '0.1.0'
+}
+ 
+repositories {
+    mavenLocal ()
+    mavenCentral ()
+    maven { url "https://repo.spring.io/libs-release" }
+}
+
+
+
+apply from: 'tasks.gradle'
+processResources.dependsOn copyConfiguration
+ 
+dependencies {
+    
+    compile("org.springframework.boot:spring-boot-starter-web")
+	compile("org.apache.tomcat.embed:tomcat-embed-jasper")
+	
+    compile("org.springframework.boot:spring-boot-starter-data-jpa")
+	
+	//db
+    compile("org.hsqldb:hsqldb") 
+	compile("org.mariadb.jdbc:mariadb-java-client:1.2.0")
+	
+	compile("c3p0:c3p0:0.9.1.2")
+	
+	if (environment != "dev") {
+		compile("org.springframework.boot:spring-boot-starter-security")
+		// OAuth2
+		compile('org.springframework.security.oauth:spring-security-oauth2:2.0.5.RELEASE')
+	}
+	
+	// LDAP
+	compile("org.springframework.ldap:spring-ldap-core:2.0.3.RELEASE")
+	
+	// APNS client
+	compile("com.notnoop.apns:apns:1.0.0.Beta6")
+	
+	// certification, configuration profile handler
+	compile('com.googlecode.plist:dd-plist:1.16')
+ 
+	// for Hex.encodeHexString method
+	compile('commons-codec:commons-codec:1.10')
+	
+	// rest client for WKS
+	compile('org.apache.httpcomponents:fluent-hc:4.5')
+	
+	compile fileTree(dir: 'lib', include: '**/*.jar')
+
+	testCompile ("org.springframework.boot:spring-boot-starter-test")
+}
+
+sourceSets {
+	main {
+		java {
+			if (environment == "dev") {
+				exclude 'com/wistron/mdm/security/**'
+			}
+	   }
+   }
+}
+
+task wrapper(type: Wrapper) {
+	gradleVersion = '2.3'
+}
+
