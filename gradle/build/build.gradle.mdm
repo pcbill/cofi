@@ -18,11 +18,18 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'spring-boot'
+
+apply from: 'tasks.gradle'
+processResources.dependsOn copyConfiguration
+assemble.dependsOn finalRepackage
+build.dependsOn finalZip
  
 sourceCompatibility = 1.7 
+targetCompatibility = 1.7
+
 jar {
     baseName = 'mdm'
-    version =  '0.1.0'
+    //version =  '0.1.0'
 }
  
 repositories {
@@ -30,11 +37,6 @@ repositories {
     mavenCentral ()
     maven { url "https://repo.spring.io/libs-release" }
 }
-
-
-
-apply from: 'tasks.gradle'
-processResources.dependsOn copyConfiguration
  
 dependencies {
     
@@ -70,6 +72,10 @@ dependencies {
 	// rest client for WKS
 	compile('org.apache.httpcomponents:fluent-hc:4.5')
 	
+	// documentation lib
+	compile("io.springfox:springfox-swagger2:2.0.2")
+	compile("io.springfox:springfox-swagger-ui:2.0.2")
+	
 	compile fileTree(dir: 'lib', include: '**/*.jar')
 
 	testCompile ("org.springframework.boot:spring-boot-starter-test")
@@ -81,8 +87,11 @@ sourceSets {
 			if (environment == "dev") {
 				exclude 'com/wistron/mdm/security/**'
 			}
-	   }
-   }
+		}
+		resources {
+			exclude 'application.properties'
+		}
+	}
 }
 
 task wrapper(type: Wrapper) {
