@@ -1,0 +1,12 @@
+steps
+
+1. Downloaded and installed the Sublime Monokai Theme from
+    https://github.com/y3sh/Intellij-Colors-Sublime-Monokai
+
+2. Changed to the Darcula theme in Settings -> Appearance
+
+3. Selected SublimeMonokai from Settings -> Editor -> Colors and Fonts
+
+4. Selected the Consolas Font in Settings -> Editor -> Colors and Fonts -> Font and set the font size to 16
+
+5. Shutdown IntelliJ and edit the idea.vmoptions file and add -Dawt.useSystemAAFontSettings=lcd and -Dswing.aatext=true
