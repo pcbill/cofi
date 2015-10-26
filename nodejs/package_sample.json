@@ -1,0 +1,12 @@
+{
+  "name": "projectName",
+  "version": "1.0.0",
+  "author": "Bill SJ Wu",
+  "description": "",
+  "scripts": {
+    "build": "webpack --progress --colors -watch"
+  },
+
+  "dependencies": {
+  }
+}
