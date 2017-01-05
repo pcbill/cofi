@@ -1,9 +1,12 @@
 buildscript {
+    ext {
+        springBootVersion = '1.4.3.RELEASE'
+    }
     repositories {
         mavenCentral()
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.3.RELEASE")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
     }
 }
 
@@ -25,8 +28,10 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter-web:1.4.3.RELEASE")
-    compile("org.springframework.boot:spring-boot-starter-jetty:1.4.3.RELEASE")
+    compile("org.springframework.boot:spring-boot-starter-web") {
+        exclude module:'spring-boot-starter-tomcat'
+    }
+    compile("org.springframework.boot:spring-boot-starter-jetty")
     compile("org.eclipse.jetty.http2:http2-server:9.3.15.v20161220")
     compile("org.eclipse.jetty:jetty-alpn-server:9.3.15.v20161220")
 }
