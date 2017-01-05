@@ -15,7 +15,7 @@ apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 
 jar {
-	baseName = 'bananatree'
+	baseName = 'continuous_development'
 	version = '0.0.1-SNAPSHOT'
 }
 
@@ -26,23 +26,20 @@ repositories {
 	mavenCentral()
 }
 
+////*
 configurations {
     dev
 }
 
 dependencies {
-	compile("org.springframework.boot:spring-boot-starter-web") {
-        exclude module:'spring-boot-starter-tomcat'
-    }
-	compile("org.springframework.boot:spring-boot-starter-jetty")
-	compile("org.eclipse.jetty.http2:http2-server:9.3.15.v20161220")
-	compile("org.eclipse.jetty:jetty-alpn-server:9.3.15.v20161220")
-
+	compile("org.springframework.boot:spring-boot-starter-web")
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 
+	////*
     dev("org.springframework.boot:spring-boot-devtools")
 }
 
+////*
 bootRun {
     // Use Spring Boot DevTool only when we run Gradle bootRun task
     classpath = sourceSets.main.runtimeClasspath + configurations.dev

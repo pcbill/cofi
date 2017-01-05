@@ -1,3 +1,6 @@
+---
+spring:
+  profiles: http2
 server:
   port: 8443
   ssl:
@@ -5,3 +8,4 @@ server:
     key-store-password: secret
     key-password: password
     protocol: TLSv1.2
+ ---
