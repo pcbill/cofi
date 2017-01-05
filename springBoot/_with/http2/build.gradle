@@ -1,0 +1,33 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.3.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+
+jar {
+    baseName = 'http2-practice'
+    version =  '0.1.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web:1.4.3.RELEASE")
+    compile("org.springframework.boot:spring-boot-starter-jetty:1.4.3.RELEASE")
+    compile("org.eclipse.jetty.http2:http2-server:9.3.15.v20161220")
+    compile("org.eclipse.jetty:jetty-alpn-server:9.3.15.v20161220")
+}
+

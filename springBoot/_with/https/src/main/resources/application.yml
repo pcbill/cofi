@@ -1,0 +1,11 @@
+### https config
+server:
+  port: 8443
+  ssl:
+#    enabled: true
+#    key-alias: ontrack
+#    key-store-type: PKCS12
+    key-store: classpath:keystore.jks
+    key-store-password: secret
+    key-password: password
+    protocol: TLSv1.2
