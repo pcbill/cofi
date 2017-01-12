@@ -1,0 +1,12 @@
+FROM java:openjdk-8-jre
+MAINTAINER Bill SJ Wu <Bill_SJ_Wu@wistron.com>
+ENV TZ=Asia/Taipei
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+VOLUME /tmp
+ADD application.properties /
+ADD mdm.jar /
+ADD src /src
+ADD static /static
+ENTRYPOINT ["java","-jar","mdm.jar"]
+
+

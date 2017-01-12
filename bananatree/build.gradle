@@ -13,6 +13,7 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
+apply from: 'gradle/docker.gradle'
 
 jar {
 	baseName = 'bananatree'

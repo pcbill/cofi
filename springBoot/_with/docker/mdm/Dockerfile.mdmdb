@@ -1,0 +1,8 @@
+FROM mariadb
+ENV TZ=Asia/Taipei
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+ENV MYSQL_DATABASE=WiEMM_MDM
+ENV MYSQL_ROOT_PASSWORD=bmw520i
+WORKDIR /
+ADD 00_DBinit.sql docker-entrypoint-initdb.d/
+ADD 01_DBoauth.sql docker-entrypoint-initdb.d/
